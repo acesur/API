@@ -7,11 +7,11 @@ public class EmployeeCUD {
     private int age;
     private String profile_image;
 
-    public EmployeeCUD(int id, String employee_name, float employee_salary, int employee_age){
+    public EmployeeCUD(int id, String employee_name, float employee_salary, int employee_age) {
         this.id = id;
-        this.name=employee_name;
-        this.salary=employee_salary;
-        this.age=employee_age;
+        this.name = employee_name;
+        this.salary = employee_salary;
+        this.age = employee_age;
 
     }
 
@@ -95,4 +95,6 @@ public class EmployeeCUD {
             this.age = age;
         }
     }
+
+
 }

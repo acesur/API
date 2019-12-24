@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.api.api.EmployeeAPI;
 import com.example.api.model.Employee;
 import com.example.api.model.EmployeeCUD;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -20,6 +23,9 @@ public class UpdateEmployeeActivity extends AppCompatActivity {
     private Button btnSearch, btnUpdate,btnDelete;
     private EditText etEmpNo;
     private EditText etEmpName, etEmpSalary, etEmpAge;
+
+    Retrofit retrofit;
+    EmployeeAPI employeeAPI;
 
 
     @Override
@@ -34,8 +40,6 @@ public class UpdateEmployeeActivity extends AppCompatActivity {
         etEmpSalary = findViewById(R.id.etEmpSalary);
         etEmpAge = findViewById(R.id.etEmpAge);
 
-        Retrofit retrofit;
-        EmployeeAPI employeeAPI;
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,9 +62,53 @@ public class UpdateEmployeeActivity extends AppCompatActivity {
 
     }
     private void CreateInstance(){
-        retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+      retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
 
-        employeeAPI = retrofit.create(EmployeeAPI.class);
+
+      employeeAPI = retrofit.create(EmployeeAPI.class);
+
+    }
+
+    private void loadData(){
+        CreateInstance();
+        Call<Employee> listCall =employeeAPI.getEmployeeByID(Integer.parseInt(etEmpNo.getText().toString()));
+        listCall.enqueue(new Callback<Employee>() {
+            @Override
+            public void onResponse(Call<Employee> call, Response<Employee> response) {
+                etEmpName.setText(response.body().getEmploee_name());
+                etEmpSalary.setText(Float.toString(response.body().getEmployee_salary()));
+                etEmpAge.setText(Integer.toString(response.body().getEmployee_age()));
+            }
+
+            @Override
+            public void onFailure(Call<Employee> call, Throwable t) {
+                Toast.makeText(UpdateEmployeeActivity.this,"Error",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+    }
+    private void updateEmployee(){
+        CreateInstance();
+        EmployeeCUD employee = new EmployeeCUD(etEmpName.getText().toString(),Float.parseFloat(etEmpSalary.getText().toString()),Integer.parseInt(etEmpAge.getText().toString()));
+        Call<Void> voidCall = employeeAPI.updateEmployee(Integer.parseInt(etEmpNo.getText().toString()),employee);
+        voidCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+
+
+    }
+
+    private void deleteEmployee(){
 
     }
 
