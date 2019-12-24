@@ -96,11 +96,13 @@ public class UpdateEmployeeActivity extends AppCompatActivity {
         voidCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(UpdateEmployeeActivity.this,"Success",Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(UpdateEmployeeActivity.this,"Error",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -109,6 +111,19 @@ public class UpdateEmployeeActivity extends AppCompatActivity {
     }
 
     private void deleteEmployee(){
+        CreateInstance();
+        Call<Void> voidCall = employeeAPI.deleteEmployee(Integer.parseInt(etEmpNo.getText().toString()));
+        voidCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(UpdateEmployeeActivity.this,"Success",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(UpdateEmployeeActivity.this,"Error",Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
