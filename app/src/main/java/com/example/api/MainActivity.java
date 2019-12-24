@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 List<Employee> emplist = response.body();
                 for (Employee employee: emplist){
                     String data = "";
+                    data += "Employee ID : " + employee.getId() + "\n";
                     data += "Employee name : " + employee.getEmploee_name() + "\n";
                     data += "Employee age : " + employee.getEmployee_age() + "\n";
                     data += "Employee salary : " + employee.getEmployee_salary() + "\n";
