@@ -38,7 +38,7 @@ public class SearchEmployeeActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            /*    if (Validate()){
+            /*   if (Validate()){
                     loadData();
                 }*/
             loadData();

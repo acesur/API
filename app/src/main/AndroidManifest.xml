@@ -14,17 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Dashboard">            <intent-filter>
+        <activity android:name=".SplashActivity">    <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter></activity>
+        <activity android:name=".Dashboard">
+
+        </activity>
         <activity android:name=".UpdateEmployeeActivity" />
         <activity android:name=".RegisterEmployeeActivity" />
         <activity android:name=".SearchEmployeeActivity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
