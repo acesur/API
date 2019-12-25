@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         EmployeeAPI employeeAPI = retrofit.create(EmployeeAPI.class);
-        Call<List<Employee>> listCall = employeeAPI.getAllEmployees();
+        Call<List<Employee>> listCall = employeeAPI.getEmployee();
         listCall.enqueue(new Callback<List<Employee>>() {
             @Override
             public void onResponse(Call<List<Employee>> call, Response<List<Employee>> response) {
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 for (Employee employee: emplist){
                     String data = "";
                     data += "Employee ID : " + employee.getId() + "\n";
-                    data += "Employee name : " + employee.getEmploee_name() + "\n";
+                    data += "Employee name : " + employee.getEmployee_name() + "\n";
                     data += "Employee age : " + employee.getEmployee_age() + "\n";
                     data += "Employee salary : " + employee.getEmployee_salary() + "\n";
                     tvAPI.append(data);

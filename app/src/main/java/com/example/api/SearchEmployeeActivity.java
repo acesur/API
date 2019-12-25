@@ -40,7 +40,7 @@ public class SearchEmployeeActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Validate() == true) {
+                if (Validate()) {
                     loadData();
                 }
                 // loadData();
@@ -70,7 +70,7 @@ public class SearchEmployeeActivity extends AppCompatActivity {
                 Toast.makeText(SearchEmployeeActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
                 String content = "";
                 content += "Id :" + response.body().getId() + "\n";
-                content += "Name :" + response.body().getEmploee_name() + "\n";
+                content += "Name :" + response.body().getEmployee_name() + "\n";
                 content += "Age :" + response.body().getEmployee_age() + "\n";
                 content += "Salary :" + response.body().getEmployee_salary() + "\n";
 

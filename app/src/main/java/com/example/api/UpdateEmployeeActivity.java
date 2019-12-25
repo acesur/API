@@ -75,7 +75,7 @@ public class UpdateEmployeeActivity extends AppCompatActivity {
         listCall.enqueue(new Callback<Employee>() {
             @Override
             public void onResponse(Call<Employee> call, Response<Employee> response) {
-                etEmpName.setText(response.body().getEmploee_name());
+                etEmpName.setText(response.body().getEmployee_name());
                 etEmpSalary.setText(Float.toString(response.body().getEmployee_salary()));
                 etEmpAge.setText(Integer.toString(response.body().getEmployee_age()));
             }

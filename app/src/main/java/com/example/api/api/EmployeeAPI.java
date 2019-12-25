@@ -16,7 +16,7 @@ import retrofit2.http.Path;
 public interface EmployeeAPI {
 
     @GET("employees")
-    Call<List<Employee>> getAllEmployees();
+    Call<List<Employee>> getEmployee();
 
     //Get employee on basis of id
     @GET("employee/{empID}")
