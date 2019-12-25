@@ -42,6 +42,7 @@ public class UpdateEmployeeActivity extends AppCompatActivity {
         etEmpName = findViewById(R.id.etEmpName);
         etEmpSalary = findViewById(R.id.etEmpSalary);
         etEmpAge = findViewById(R.id.etEmpAge);
+        builder = new AlertDialog.Builder(this);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +121,7 @@ public class UpdateEmployeeActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
 
+                builder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
 
 
                 builder.setMessage("Do you Want to delete ??").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
