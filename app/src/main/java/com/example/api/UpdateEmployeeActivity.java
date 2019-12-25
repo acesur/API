@@ -1,7 +1,9 @@
 package com.example.api;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +25,7 @@ public class UpdateEmployeeActivity extends AppCompatActivity {
     private Button btnSearch, btnUpdate,btnDelete;
     private EditText etEmpNo;
     private EditText etEmpName, etEmpSalary, etEmpAge;
+    AlertDialog.Builder builder;
 
     Retrofit retrofit;
     EmployeeAPI employeeAPI;
@@ -116,7 +119,42 @@ public class UpdateEmployeeActivity extends AppCompatActivity {
         voidCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(UpdateEmployeeActivity.this,"Success",Toast.LENGTH_SHORT).show();
+
+
+
+                builder.setMessage("Do you Want to delete ??").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        Toast.makeText(getApplicationContext(),"You confirm to delete!!",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                                Toast.makeText(getApplicationContext(),"Cancled",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.setTitle("Confirm Delete");
+                alertDialog.show();
+
+                /*
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                builder.setPositiveButton(R.string.fire, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(this,"You Can Delete ",Toast.LENGTH_SHORT).show();
+                    }
+                }).setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                });
+                return builder.create();*/
+                //Toast.makeText(UpdateEmployeeActivity.this,"Success",Toast.LENGTH_SHORT).show();
             }
 
             @Override
